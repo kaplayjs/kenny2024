@@ -24,8 +24,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       kaplay:
-        specifier: 3001.0.0-alpha.18
-        version: 3001.0.0-alpha.18
+        specifier: 3001.0.0-alpha.18.1
+        version: 3001.0.0-alpha.18.1
       nanostores:
         specifier: ^0.10.3
         version: 0.10.3
@@ -935,8 +935,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  kaplay@3001.0.0-alpha.18:
-    resolution: {integrity: sha512-+D5L30ki4SUNAolw4h5FPYoYi3+4CyN19RKajMeHdrexOtENyDfQuKVzPLZ8klfRQ/EfEzT8YLsgTCMlbBZwFw==}
+  kaplay@3001.0.0-alpha.18.1:
+    resolution: {integrity: sha512-UyRI4jGbugWpz+qBmxhekPt0KDny44zrsb0pcKdbKl0m8ouplhYlZePNOZaiyrAreH27ayFFQVOZ6KyRwSUATQ==}
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -2092,7 +2092,7 @@ snapshots:
 
   json5@2.2.3: {}
 
-  kaplay@3001.0.0-alpha.18: {}
+  kaplay@3001.0.0-alpha.18.1: {}
 
   lilconfig@2.1.0: {}
 

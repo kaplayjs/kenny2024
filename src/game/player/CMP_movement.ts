@@ -18,8 +18,6 @@ export default function player_CMP_movement(speed: number = 1): any {
 
             // check if facing left and flip sprite
 
-            console.log(me.ang);
-
             if (me.ang > 90 && me.ang < 270) {
                 me.flipX = true;
             }

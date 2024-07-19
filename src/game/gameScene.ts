@@ -3,11 +3,15 @@ import "kaplay/global";
 import player_CMP_movement from "./player/CMP_movement";
 import player_CMP_playerMoveZone from "./player/CMP_playerMoveZone";
 import { $tutorEnabled } from "../stores";
+import player_CMP_playerTow4PPL from "./player/CMP_playerTow4PPL";
+import player_CMP_cameraFollow from "./player/CMP_cameraFollow";
 
 export default async function gameScene() {
+    //TODO: remove this when done the background
     k.add([
         rect(k.width(), k.height()),
         fixed(),
+        layer("bg"),
     ]);
 
     // Adding game objects to screen
@@ -30,14 +34,36 @@ export default async function gameScene() {
 
     // add() assembles a game object from a list of components and add to game, returns the reference of the game object
     const player = add([
-        sprite("TinyBattle_15_5"), // sprite() component makes it render as a sprite
+        sprite("TinyBattle_13_8"), // sprite() component makes it render as a sprite
         pos(k.center()), // pos() component gives it position, also enables movement
         rotate(0), // rotate() component gives it rotation
         anchor("center"), // anchor() component defines the pivot point (defaults to "topleft")
         player_CMP_movement(1), // custom component for player/boat movement
         area(),
         layer("player"),
+        player_CMP_cameraFollow(),
     ]);
+
+    const tow = add([
+        sprite("TinyBattle_13_5"), // sprite() component makes it render as a sprite
+        pos(k.center()), // pos() component gives it position, also enables movement
+        rotate(0), // rotate() component gives it rotation
+        anchor("center"), // anchor() component defines the pivot point (defaults to "topleft")
+        player_CMP_playerTow4PPL(player), // custom component for player/boat movement
+        area(),
+        layer("tow"),
+    ]);
+
+    onDraw(() => {
+        if (!(tow as any).isBroken){   
+            drawLine({
+                p1: player.pos,
+                p2: tow.pos,
+                width: 3,
+                color: rgb(63, 48, 39),
+            });
+        };
+    });
 
     add([
         sprite("TinyBattle_7_3"), // sprite() component makes it render as a sprite

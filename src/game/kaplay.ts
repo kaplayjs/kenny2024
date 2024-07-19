@@ -11,6 +11,7 @@ export const k = kaplay({
 k.layers([
     "bg",
     "obj",
+    "tow",
     "player",
     "ui",
 ], "obj");
