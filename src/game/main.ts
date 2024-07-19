@@ -8,8 +8,8 @@ import { $hiMessage } from "../stores";
 
 k.scene("init", () => {
     k.add([
-        k.text("bootstrapped", { font: "KennyBold", size: 48 }),
-        k.color(k.BLACK),
+        k.text("bootstrapped", { font: "KennyBold", size: 24 }),
+        k.color(k.WHITE),
     ]);
 
     // TODO: run game code :D

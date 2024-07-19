@@ -1,12 +1,13 @@
 import k from "./kaplay";
 import "kaplay/global";
 import player_CMP_movement from "./player/CMP_movement";
+import utils_IMP_kennyPackageTile from "./utils/IMP_kennyPackageTile";
 
-export default function gameScene() {
-	k.add([
-		rect(k.width(), k.height()),
-		fixed(),
-	])
+export default async function gameScene() {
+    k.add([
+        rect(k.width(), k.height()),
+        fixed(),
+    ]);
 
     // Adding game objects to screen
 
@@ -20,19 +21,23 @@ export default function gameScene() {
         "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA8CAYAAAApK5mGAAAAAXNSR0IArs4c6QAAAgRJREFUaIHtmktywyAMhmWPD5CcIFnHM7lbTtK7dSZexyeIb5BuSsfFgB4grKb8q9Yg0IfEwzgdCHU6XF5SW6rmZeq4NmyDGiC+OGDkinuA+KKAoRUsgKyFQSULKTAfn3euT6hu1zFZnoKKFqRgNCBCSoHFoIIPYzC1QHzFwEJQmwfWYNYKgflQv/6xDOOEQfXuj78AQ1GfKrQIE/JpHYzBf5AydEqtPpJBKNleB0ADwvYGiSOcNjF/3DwKplwuDGZzu47sNrH6LijJOZSrkBOSweHYokA5DpSwjymW0j338Pl4xudGqqxWe6oph0niMKYNELY6nY9j0JHH8w7nIy+9uPUpEkUo5EjMuZoDBEAAyjktUG05A4SJFCEJVMxG+zhFTjmOI1hdKRRmdzpcXp2/bNc8kFL3KM65csjyKFMag7frPqShBmRdDci6GpB1NSDrakDW1YCsS3zaLn0dXEoiIOw9xpVjYJT3Ie7gsFOOc3GIXQeX7g+ACaR1C1qy3+w3Vv+T4N4/AyADUb5vlmxLOjBvt2yLgaTR0W6rRci6/ieQ9mfEkqoeIW3AzT7kn8O4+8+8TJv78ppRGkIO1HSi5JINIEg5igNUJ0vDAHwDaTiA1eXCUDPmZw6tOwiloGQ0NSKwVghStcNcSQ6ob7WxzsvUmY4QAD1KLr3NAwHgUOu5+gU1E/8vo/BmaAAAAABJRU5ErkJggg==",
     ); // Load a sprite asset from "sprites/bean.png", with the name "bean"
 
+    await utils_IMP_kennyPackageTile("TinyBattle", "./kenny/2D/Tiny%20Battle/Tilemap/tilemap_packed.png", 198, 18, 16);
+
     // A "Game Object" is the basic unit of entity in kaboom
     // Game objects are composed from components
     // Each component gives a game object certain capabilities
 
     // add() assembles a game object from a list of components and add to game, returns the reference of the game object
     const player = add([
-        sprite("bean"), // sprite() component makes it render as a sprite
+        sprite("TinyBattle_15_5"), // sprite() component makes it render as a sprite
         pos(120, 80), // pos() component gives it position, also enables movement
         rotate(0), // rotate() component gives it rotation
         anchor("center"), // anchor() component defines the pivot point (defaults to "topleft")
-        player_CMP_movement(3), // custom component for player/boat movement
-		area(),
+        player_CMP_movement(1), // custom component for player/boat movement
+        area(),
     ]);
+
+    (globalThis as any).player = player;
 
     // Add multiple game objects
     for (let i = 0; i < 3; i++) {
