@@ -54,14 +54,6 @@ export default function player_CMP_movement(speed: number = 1): any {
             me.pos.x += me.vel.x * 120 * dt();;
             me.pos.y += me.vel.y * 120 * dt();;
 
-            if (me.pos.x <= 0 || me.pos.x >= k.width()) {
-                me.vel.x = -me.vel.x;
-            }
-
-            if (me.pos.y <= 0 || me.pos.y >= k.height()) {
-                me.vel.y = -me.vel.y;
-            }
-
             me.vel.x = Math.max(-speed, Math.min(speed, me.vel.x))
             me.vel.y = Math.max(-speed, Math.min(speed, me.vel.y))
         },
