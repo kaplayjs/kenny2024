@@ -1,8 +1,7 @@
-import { Comp } from "kaplay";
 import k from "../kaplay";
 import "kaplay/global";
 import utils_MATH_angleToXyVec from "../utils/MATH_angleToXyVec";
-export default function player_CMP_movement(speed: number = 1): Comp {
+export default function player_CMP_movement(speed: number = 1): any {
     let me: any;
     return {
         add() {
