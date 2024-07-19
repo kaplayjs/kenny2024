@@ -1,15 +1,14 @@
 import kaplay from "kaplay";
-import type { KAPLAYCtx } from "kaplay";
 
-export const k: KAPLAYCtx<{}, never> = kaplay({
-  background: [255, 255, 255],
-  width: 1280,
-  height: 720,
-  letterbox: true,
-  font: "monospace",
+export const k = kaplay({
+    background: [255, 255, 255],
+    width: 1280,
+    height: 720,
+    letterbox: true,
+    font: "monospace",
 });
 
-k.loadFont("KennyBold", "kenny/Fonts/Kenney%20Bold.ttf")
+k.loadFont("KennyBold", "kenny/Fonts/Kenney%20Bold.ttf");
 
 export default k;
 
