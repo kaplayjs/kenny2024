@@ -2,6 +2,7 @@ import k from "./kaplay";
 import "kaplay/global";
 import player_CMP_movement from "./player/CMP_movement";
 import player_CMP_playerMoveZone from "./player/CMP_playerMoveZone";
+import { $tutorEnabled } from "../stores";
 
 export default async function gameScene() {
     k.add([
@@ -67,6 +68,7 @@ export default async function gameScene() {
             destroy(tutorText);
             destroy(tutorPic);
         }
+        $tutorEnabled.set(false);
     });
 
     (globalThis as any).player = player;
