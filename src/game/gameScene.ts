@@ -55,12 +55,13 @@ export default async function gameScene() {
     ]);
 
     onDraw(() => {
-        if (!(tow as any).isBroken){   
+        if (!(tow as any).isBroken){
+            let tT: any = (tow as any);
             drawLine({
                 p1: player.pos,
                 p2: tow.pos,
-                width: 3,
-                color: rgb(63, 48, 39),
+                width: lerp(4, 1, tT.distance.distance / 65),
+                color: lerp(rgb(0, 255, 0), rgb(255, 0, 0), tT.distance.distance / 65),
             });
         };
     });
