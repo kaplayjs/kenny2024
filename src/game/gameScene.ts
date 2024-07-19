@@ -190,6 +190,21 @@ export default async function gameScene() {
         layer("player"),
     ]);
 
+    /*const TitleText = add([
+        text("Maniac Marines", {font: "KennyBold", size: 16, align: "center"}),
+        pos(center().x, 16),
+        anchor("center"),
+        color(65,25,85),
+    ]);*/
+
+    loadSprite("title", "./TITLE.png")
+    const TitleText = add([
+        sprite("title"),
+        pos(center().x, 16),
+        anchor("center"),
+        color(65,25,85),
+    ])
+
     const tutorText = add([
         text("Use\nArrow\nKeys  To  Move", {font: "KennyPixel", size: 16, align: "center"}),
         color(BLACK),
@@ -198,9 +213,15 @@ export default async function gameScene() {
         layer("ui"),
     ])
 
+    const menuSong = k.play("menuSong", {loop: true});
+
     k.onKeyPress(["space", "up", "down", "left", "right"], () => {
         if (tutorText.exists()) {
             destroy(tutorText);
+            destroy(TitleText);
+            const playingSong = k.play("playingSong", {loop: true});
+            playingSong.seek(menuSong.time());
+            menuSong.stop();
         }
         $tutorEnabled.set(false);
     });

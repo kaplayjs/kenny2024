@@ -9,8 +9,17 @@ import { $hiMessage } from "../stores";
 // setup bootstrapper
 
 k.scene("init", async () => {
+    k.loadSprite("jam", "./Jam.png")
+
     k.add([
-        k.text("bootstrapped", { font: "KennyBold", size: 24 }),
+        k.sprite("jam"),
+        k.pos(k.width() / 2, k.height() / 2),
+        k.anchor("center"),
+        k.scale(0.5),
+    ]);
+
+    const ctp = k.add([
+        k.text("click to play", { font: "KennyBold", size: 16 }),
         k.color(k.WHITE),
     ]);
 
@@ -23,10 +32,16 @@ k.scene("init", async () => {
 
     k.scene("main", gameScene);
 
-    // wait 1 second using async js features
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    k.onMouseDown(() => {
+        k.go("main");
+    });
 
-    k.go("main");
+    if ("isTauri" in window){
+        ctp.destroy();
+        console.log("desktop")
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        k.go("main");
+    }
 });
 
 // bootstrapper

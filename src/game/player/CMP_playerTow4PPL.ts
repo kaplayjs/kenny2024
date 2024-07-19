@@ -20,8 +20,6 @@ export default function player_CMP_playerTow4PPL(player: any, hookeConstant: num
 
                 me.distance = utils_MATH_XyToAngle(vec2(player.pos.x - me.pos.x, player.pos.y - me.pos.y))
 
-                console.log(me.distance.distance)
-
                 if (me.distance.distance > 65) {
                     me.isBroken = true;
                 }
