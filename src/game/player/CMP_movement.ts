@@ -7,43 +7,44 @@ export default function player_CMP_movement(speed: number = 1): any {
         add() {
             me = this as any;
             me.vel = k.vec2(0, 0);
+            me.ang = 0;
         },
         update() {
-            me.angle = me.angle % 360;
+            me.ang = me.ang % 360;
 
-            if (me.angle < 0) {
-                me.angle = 360 + me.angle;
+            if (me.ang < 0) {
+                me.ang = 360 + me.ang;
             }
 
             // check if facing left and flip sprite
 
-            console.log(me.angle);
+            console.log(me.ang);
 
-            if (me.angle > 90 && me.angle < 270) {
-                me.flipY = true;
+            if (me.ang > 90 && me.ang < 270) {
+                me.flipX = true;
             }
             else {
-                me.flipY = false;
+                me.flipX = false;
             }
 
             if (isKeyDown("left")) {
-                me.angle -= 240 * dt();
+                me.ang -= 240 * dt();
             }
             if (isKeyDown("right")) {
-                me.angle += 240 * dt();
+                me.ang += 240 * dt();
             }
 
             if (isKeyDown("up")) {
                 me.vel = k.vec2(
-                    me.vel.x + (utils_MATH_angleToXyVec(me.angle).x * speed * dt()),
-                    me.vel.y + (utils_MATH_angleToXyVec(me.angle).y * speed * dt()),
+                    me.vel.x + (utils_MATH_angleToXyVec(me.ang).x * speed * dt()),
+                    me.vel.y + (utils_MATH_angleToXyVec(me.ang).y * speed * dt()),
                 );
             }
 
             if (isKeyDown("down")) {
                 me.vel = k.vec2(
-                    me.vel.x - (utils_MATH_angleToXyVec(me.angle).x * speed * dt()),
-                    me.vel.y - (utils_MATH_angleToXyVec(me.angle).y * speed * dt()),
+                    me.vel.x - (utils_MATH_angleToXyVec(me.ang).x * speed * dt()),
+                    me.vel.y - (utils_MATH_angleToXyVec(me.ang).y * speed * dt()),
                 );
             }
 

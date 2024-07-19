@@ -8,7 +8,12 @@ export const k = kaplay({
     font: "monospace",
 });
 
-k.loadFont("KennyBold", "kenny/Fonts/Kenney%20Bold.ttf");
+k.layers([
+    "bg",
+    "obj",
+    "player",
+    "ui",
+], "obj");
 
 export default k;
 
