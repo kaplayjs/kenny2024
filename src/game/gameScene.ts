@@ -154,6 +154,7 @@ export default async function gameScene() {
         area(),
         layer("player"),
         player_CMP_cameraFollow(k.vec2(level.levelWidth(), level.levelHeight()), k.width(), k.height()),
+        "player",
     ]);
 
     const tow = add([
@@ -164,6 +165,8 @@ export default async function gameScene() {
         player_CMP_playerTow4PPL(player), // custom component for player/boat movement
         area(),
         layer("tow"),
+        "player",
+        "tow",
     ]);
 
     onDraw(() => {
