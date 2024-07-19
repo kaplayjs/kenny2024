@@ -47,8 +47,8 @@ export default function player_CMP_movement(speed: number = 1): any {
             }
 
             if (isKeyDown("space")) {
-                me.vel.x = me.vel.x * (0.9);
-                me.vel.y = me.vel.y * (0.9);
+                me.vel.x = me.vel.x * (100 * dt());
+                me.vel.y = me.vel.y * (100 * dt());
             }
 
             me.pos.x += me.vel.x * 120 * dt();;

@@ -8,15 +8,23 @@ import { $hiMessage } from "../stores";
 
 // setup bootstrapper
 
-k.scene("init", () => {
+k.scene("init", async () => {
     k.add([
         k.text("bootstrapped", { font: "KennyBold", size: 24 }),
         k.color(k.WHITE),
     ]);
 
-    // TODO: run game code :D
+    k.add([
+        k.text("made in kaplay", { font: "KennyBold", size: 24 }),
+        k.color(k.WHITE),
+        k.pos(0, height()),
+        k.anchor("botleft")
+    ]);
 
     k.scene("main", gameScene);
+
+    // wait 1 second using async js features
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     k.go("main");
 });
@@ -29,4 +37,3 @@ k.loadFont("KennyPixel", "kenny/Fonts/Kenney%20Pixel.ttf");
 loadPublic();
 
 k.go("init");
-k.debug.log($hiMessage.get());

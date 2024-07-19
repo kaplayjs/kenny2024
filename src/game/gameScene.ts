@@ -191,24 +191,16 @@ export default async function gameScene() {
     ]);
 
     const tutorText = add([
-        text("Use\n\nKeys", {font: "KennyPixel", size: 16, align: "center"}),
+        text("Use\nArrow\nKeys  To  Move", {font: "KennyPixel", size: 16, align: "center"}),
         color(BLACK),
         pos(center().x, center().y - 35),
         anchor("center"),
         layer("ui"),
     ])
 
-    const tutorPic = add([
-        sprite("input_33_19"),
-        pos(center().x, center().y - 32),
-        anchor("center"),
-        layer("ui"),
-    ]);
-
     k.onKeyPress(["space", "up", "down", "left", "right"], () => {
         if (tutorText.exists()) {
             destroy(tutorText);
-            destroy(tutorPic);
         }
         $tutorEnabled.set(false);
     });

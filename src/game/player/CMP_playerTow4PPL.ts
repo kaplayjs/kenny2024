@@ -26,6 +26,13 @@ export default function player_CMP_playerTow4PPL(player: any, hookeConstant: num
                     me.isBroken = true;
                 }
             }
+
+            if (me.vel.x >= 0){
+                me.flipX = false;
+            } else {
+                me.flipX = true;
+            }
+
             me.pos.x += me.vel.x * 120 * dt();
             me.pos.y += me.vel.y * 120 * dt();
         }
