@@ -1,5 +1,7 @@
 import k from "./kaplay";
 
+import gameScene from "./gameScene";
+
 import { $hiMessage } from "../stores";
 
 // setup bootstrapper
@@ -11,6 +13,10 @@ k.scene("init", () => {
     ]);
 
     // TODO: run game code :D
+
+    k.scene("main", gameScene);
+
+    k.go("main");
 });
 
 // bootstrapper

@@ -1,7 +1,7 @@
 import kaplay from "kaplay";
 
 export const k = kaplay({
-    background: [255, 255, 255],
+    background: [0, 0, 0],
     width: 1280,
     height: 720,
     letterbox: true,
