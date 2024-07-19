@@ -4,8 +4,6 @@ import gameScene from "./gameScene";
 
 import loadPublic from "./loadPublic";
 
-import { $hiMessage } from "../stores";
-
 // setup bootstrapper
 
 k.scene("init", async () => {
