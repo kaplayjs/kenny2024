@@ -49,4 +49,7 @@ k.loadFont("KennyPixel", "kenny/Fonts/Kenney%20Pixel.ttf");
 
 loadPublic();
 
-k.go("init");
+
+k.onLoad(() => {
+    k.go("init");
+})
