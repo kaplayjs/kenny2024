@@ -8,4 +8,6 @@ export default async function loadPublic() {
 
     loadMusic("menuSong", "./menuMusic/menuSong.wav");
     loadMusic("playingSong", "./menuMusic/playingSong.wav");
+
+    loadSprite("title", "./TITLE.png");
 }

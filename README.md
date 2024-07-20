@@ -1,6 +1,12 @@
-# Tauri + React + Typescript
+# Lock To Lock
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+```sh
+pnpm dev # web debug
+pnpm desktop:dev # tauri debug
+
+pnpm build # web build
+pnpm desktop:build # web+tauri build (warning, can to 10+ mins)
+```
 
 ## Recommended IDE Setup
 

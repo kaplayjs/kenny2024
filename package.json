@@ -20,7 +20,6 @@
     "@nanostores/react": "^0.7.2",
     "@tauri-apps/api": ">=2.0.0-beta.0",
     "@tauri-apps/plugin-shell": ">=2.0.0-beta.0",
-    "@vituum/vite-plugin-tailwindcss": "^1.1.0",
     "kaplay": "3001.0.0-alpha.18.1",
     "nanostores": "^0.10.3",
     "react": "^18.2.0",
@@ -28,15 +27,8 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": ">=2.0.0-beta.0",
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.2.1",
-    "autoprefixer": "^10.4.19",
-    "daisyui": "^4.12.10",
     "dprint": "^0.47.2",
     "internal-ip": "^7.0.0",
-    "postcss": "^8.4.39",
-    "tailwindcss": "^3.4.6",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   },

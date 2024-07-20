@@ -1,6 +1,6 @@
 import k from "./kaplay";
 import "kaplay/global";
-import { $tutorEnabled } from "../stores";
+import { $tutorEnabled } from "./stores";
 import { GameObj } from "kaplay";
 import player from "./player/player";
 
@@ -149,12 +149,10 @@ export default async function gameScene() {
     
     player(level);
 
-    loadSprite("title", "./TITLE.png")
     const TitleText = add([
         sprite("title"),
         pos(center().x, 16),
         anchor("center"),
-        color(65,25,85),
     ])
 
     const tutorText = add([

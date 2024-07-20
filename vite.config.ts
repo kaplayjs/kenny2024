@@ -1,5 +1,3 @@
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@vituum/vite-plugin-tailwindcss";
 import { internalIpV4 } from "internal-ip";
 import { defineConfig } from "vite";
 
@@ -7,7 +5,7 @@ const mobile = !!/android|ios/.exec(process.env.TAURI_ENV_PLATFORM);
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-    plugins: [react(), tailwindcss()],
+    plugins: [],
 
     base: "./",
 
@@ -24,7 +22,7 @@ export default defineConfig(async () => ({
             ? {
                 protocol: "ws",
                 host: await internalIpV4(),
-                port: 1421,
+                port: 4321,
             }
             : undefined,
         watch: {
