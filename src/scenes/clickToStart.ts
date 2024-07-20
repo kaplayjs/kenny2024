@@ -14,6 +14,6 @@ k.scene("clickToStart", () => {
     ]);
 
     k.onMousePress(() => {
-        k.go("main");
+        k.go("mainMenu");
     });
 });
