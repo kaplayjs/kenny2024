@@ -1,15 +1,16 @@
-import { Vec2 } from "kaplay";
+import type { GameObj, PosComp, Vec2 } from "kaplay";
+import { k } from "../../kaplay";
 
 function clamp(value: number, min: number, max: number): number {
     return Math.min(Math.max(value, min), max);
 }
 
-export default function player_CMP_cameraFollow(vec?: Vec2, viewWidth?: number, viewHeight?: number) {
-    let me: any;
+export function playerCameraFollow(vec?: Vec2, viewWidth?: number, viewHeight?: number) {
+    let me: GameObj<PosComp>;
 
     return {
-        add() {
-            me = this as any;
+        add(this: GameObj<PosComp>) {
+            me = this;
         },
         update() {
             if (vec && viewWidth !== undefined && viewHeight !== undefined) {
@@ -20,9 +21,9 @@ export default function player_CMP_cameraFollow(vec?: Vec2, viewWidth?: number, 
                 const clampedX = clamp(me.pos.x, halfViewWidth, vec.x - halfViewWidth);
                 const clampedY = clamp(me.pos.y, halfViewHeight, vec.y - halfViewHeight);
 
-                camPos(clampedX, clampedY);
+                k.camPos(clampedX, clampedY);
             } else {
-                camPos(me.pos);
+                k.camPos(me.pos);
             }
         },
     };

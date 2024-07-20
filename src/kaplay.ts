@@ -15,7 +15,3 @@ k.layers([
     "player",
     "ui",
 ], "obj");
-
-export default k;
-
-(globalThis as any).k = k;

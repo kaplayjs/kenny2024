@@ -1,5 +1,5 @@
 import { Vec2 } from "kaplay";
-import k from "../kaplay";
+import { k } from "../kaplay";
 
 export default function utils_MATH_angleToXyVec(angle: number): Vec2 {
     // Convert degrees to radians

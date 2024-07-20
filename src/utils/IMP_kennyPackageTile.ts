@@ -1,5 +1,4 @@
-import k from "../kaplay";
-import "kaplay/global";
+import { k } from "../kaplay";
 
 export default async function utils_IMP_kennyPackageTile(
     name: string,

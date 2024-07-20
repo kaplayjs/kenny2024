@@ -1,11 +1,9 @@
-import k from "./kaplay";
-
 import gameScene from "./gameScene";
-
+import { k } from "./kaplay";
+import "./scenes/mainMenu";
 import loadPublic from "./loadPublic";
 
 // setup bootstrapper
-
 k.scene("init", async () => {
     k.loadSprite("jam", "./Jam.png");
 
@@ -24,7 +22,7 @@ k.scene("init", async () => {
     k.add([
         k.text("made in kaplay", { font: "KennyBold", size: 24 }),
         k.color(k.WHITE),
-        k.pos(0, height()),
+        k.pos(0, k.height()),
         k.anchor("botleft"),
     ]);
 
@@ -49,7 +47,6 @@ k.loadFont("KennyPixel", "kenny/Fonts/Kenney%20Pixel.ttf");
 
 loadPublic();
 
-
 k.onLoad(() => {
     k.go("init");
-})
+});

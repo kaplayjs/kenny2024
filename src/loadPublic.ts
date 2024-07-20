@@ -1,5 +1,5 @@
+import { k } from "./kaplay";
 import utils_IMP_kennyPackageTile from "./utils/IMP_kennyPackageTile";
-import "kaplay/global";
 
 export default async function loadPublic() {
     await utils_IMP_kennyPackageTile("TinyBattle", "./kenny/2D/Tiny%20Battle/Tilemap/tilemap_packed.png", 198, 18, 16);
@@ -11,8 +11,8 @@ export default async function loadPublic() {
         16,
     );
 
-    loadSound("menuSong", "./menuMusic/menuSong.wav");
-    loadSound("playingSong", "./menuMusic/playingSong.wav");
+    k.loadSound("menuSong", "./menuMusic/menuSong.wav");
+    k.loadSound("playingSong", "./menuMusic/playingSong.wav");
 
-    loadSprite("title", "./TITLE.png");
+    k.loadSprite("logo", "./logo.png");
 }
