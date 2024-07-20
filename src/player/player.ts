@@ -2,12 +2,12 @@ import { GameObj } from "kaplay";
 
 import k from "../kaplay";
 
-import player_CMP_playerTow4PPL from "./CMP_playerTow4PPL";
 import player_CMP_cameraFollow from "./CMP_cameraFollow";
 import player_CMP_movement from "./CMP_movement";
 import player_CMP_playerMoveZone from "./CMP_playerMoveZone";
+import player_CMP_playerTow4PPL from "./CMP_playerTow4PPL";
 
-export default function player(level: GameObj<any>): { player: GameObj, tow: GameObj } {
+export default function player(level: GameObj<any>): { player: GameObj; tow: GameObj } {
     const player = add([
         sprite("TinyBattle_13_8"), // sprite() component makes it render as a sprite
         pos(k.center()), // pos() component gives it position, also enables movement
@@ -37,15 +37,15 @@ export default function player(level: GameObj<any>): { player: GameObj, tow: Gam
     ]);
 
     onDraw(() => {
-        if (!(tow as any).isBroken){
-            let tT: any = (tow as any);
+        if (!(tow as any).isBroken) {
+            let tT: any = tow as any;
             drawLine({
                 p1: player.pos,
                 p2: tow.pos,
                 width: lerp(4, 1, tT.distance.distance / 65),
                 color: lerp(rgb(0, 255, 0), rgb(255, 0, 0), tT.distance.distance / 65),
             });
-        };
+        }
     });
 
     add([

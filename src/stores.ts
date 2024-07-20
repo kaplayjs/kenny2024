@@ -6,5 +6,4 @@
 import { atom } from "nanostores";
 
 export const $hiMessage = atom("hi from nanostores");
-
 export const $tutorEnabled = atom(true);

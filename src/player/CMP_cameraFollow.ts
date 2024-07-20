@@ -24,6 +24,6 @@ export default function player_CMP_cameraFollow(vec?: Vec2, viewWidth?: number, 
             } else {
                 camPos(me.pos);
             }
-        }
-    }
+        },
+    };
 }

@@ -20,8 +20,7 @@ export default function player_CMP_movement(speed: number = 1): any {
 
             if (me.ang > 90 && me.ang < 270) {
                 me.flipX = true;
-            }
-            else {
+            } else {
                 me.flipX = false;
             }
 
@@ -50,11 +49,11 @@ export default function player_CMP_movement(speed: number = 1): any {
                 me.vel = k.vec2(0, 0);
             }
 
-            me.pos.x += me.vel.x * 120 * dt();;
-            me.pos.y += me.vel.y * 120 * dt();;
+            me.pos.x += me.vel.x * 120 * dt();
+            me.pos.y += me.vel.y * 120 * dt();
 
-            me.vel.x = Math.max(-speed, Math.min(speed, me.vel.x))
-            me.vel.y = Math.max(-speed, Math.min(speed, me.vel.y))
+            me.vel.x = Math.max(-speed, Math.min(speed, me.vel.x));
+            me.vel.y = Math.max(-speed, Math.min(speed, me.vel.y));
         },
     };
 }

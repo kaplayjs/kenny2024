@@ -7,7 +7,7 @@ import loadPublic from "./loadPublic";
 // setup bootstrapper
 
 k.scene("init", async () => {
-    k.loadSprite("jam", "./Jam.png")
+    k.loadSprite("jam", "./Jam.png");
 
     k.add([
         k.sprite("jam"),
@@ -25,14 +25,14 @@ k.scene("init", async () => {
         k.text("made in kaplay", { font: "KennyBold", size: 24 }),
         k.color(k.WHITE),
         k.pos(0, height()),
-        k.anchor("botleft")
+        k.anchor("botleft"),
     ]);
 
     k.scene("main", gameScene);
 
-    if ("isTauri" in window){
+    if ("isTauri" in window) {
         ctp.destroy();
-        console.log("desktop")
+        console.log("desktop");
         await new Promise((resolve) => setTimeout(resolve, 1000));
         k.go("main");
     } else {
