@@ -26,6 +26,8 @@ export default async function gameScene() {
 
     const menuSong = k.play("menuSong", {loop: true});
 
+    menuSong.loop = true;
+
     // Adds level to scene
     let level: GameObj<any> = k.addLevel([
             "=-=+-=a g-----------",
@@ -169,6 +171,7 @@ export default async function gameScene() {
             destroy(TitleText);
             const playingSong = k.play("playingSong", {loop: true});
             playingSong.seek(menuSong.time());
+            playingSong.loop = true;
             menuSong.stop();
         }
         $tutorEnabled.set(false);
