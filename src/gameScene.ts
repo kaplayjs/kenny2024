@@ -170,8 +170,8 @@ export default async function gameScene() {
             destroy(tutorText);
             destroy(titleText);
             const playingSong = k.play("playingSong", { loop: true });
-            playingSong.seek(menuSong.time());
             playingSong.loop = true;
+            playingSong.seek(menuSong.time());
             menuSong.stop();
         }
         $tutorEnabled.set(false);

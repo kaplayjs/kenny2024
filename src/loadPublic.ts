@@ -11,8 +11,8 @@ export default async function loadPublic() {
         16,
     );
 
-    loadMusic("menuSong", "./menuMusic/menuSong.wav");
-    loadMusic("playingSong", "./menuMusic/playingSong.wav");
+    loadSound("menuSong", "./menuMusic/menuSong.wav");
+    loadSound("playingSong", "./menuMusic/playingSong.wav");
 
     loadSprite("title", "./TITLE.png");
 }
