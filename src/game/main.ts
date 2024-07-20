@@ -30,15 +30,15 @@ k.scene("init", async () => {
 
     k.scene("main", gameScene);
 
-    k.onMouseDown(() => {
-        k.go("main");
-    });
-
     if ("isTauri" in window){
         ctp.destroy();
         console.log("desktop")
         await new Promise((resolve) => setTimeout(resolve, 1000));
         k.go("main");
+    } else {
+        k.onMouseDown(() => {
+            k.go("main");
+        });
     }
 });
 

@@ -1,10 +1,8 @@
 import k from "./kaplay";
 import "kaplay/global";
-import player_CMP_movement from "./player/CMP_movement";
-import player_CMP_playerMoveZone from "./player/CMP_playerMoveZone";
 import { $tutorEnabled } from "../stores";
-import player_CMP_playerTow4PPL from "./player/CMP_playerTow4PPL";
-import player_CMP_cameraFollow from "./player/CMP_cameraFollow";
+import { GameObj } from "kaplay";
+import player from "./player/player";
 
 export default async function gameScene() {
     //TODO: remove this when done the background
@@ -26,8 +24,10 @@ export default async function gameScene() {
         "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA8CAYAAAApK5mGAAAAAXNSR0IArs4c6QAAAgRJREFUaIHtmktywyAMhmWPD5CcIFnHM7lbTtK7dSZexyeIb5BuSsfFgB4grKb8q9Yg0IfEwzgdCHU6XF5SW6rmZeq4NmyDGiC+OGDkinuA+KKAoRUsgKyFQSULKTAfn3euT6hu1zFZnoKKFqRgNCBCSoHFoIIPYzC1QHzFwEJQmwfWYNYKgflQv/6xDOOEQfXuj78AQ1GfKrQIE/JpHYzBf5AydEqtPpJBKNleB0ADwvYGiSOcNjF/3DwKplwuDGZzu47sNrH6LijJOZSrkBOSweHYokA5DpSwjymW0j338Pl4xudGqqxWe6oph0niMKYNELY6nY9j0JHH8w7nIy+9uPUpEkUo5EjMuZoDBEAAyjktUG05A4SJFCEJVMxG+zhFTjmOI1hdKRRmdzpcXp2/bNc8kFL3KM65csjyKFMag7frPqShBmRdDci6GpB1NSDrakDW1YCsS3zaLn0dXEoiIOw9xpVjYJT3Ie7gsFOOc3GIXQeX7g+ACaR1C1qy3+w3Vv+T4N4/AyADUb5vlmxLOjBvt2yLgaTR0W6rRci6/ieQ9mfEkqoeIW3AzT7kn8O4+8+8TJv78ppRGkIO1HSi5JINIEg5igNUJ0vDAHwDaTiA1eXCUDPmZw6tOwiloGQ0NSKwVghStcNcSQ6ob7WxzsvUmY4QAD1KLr3NAwHgUOu5+gU1E/8vo/BmaAAAAABJRU5ErkJggg==",
     ); // Load a sprite asset from "sprites/bean.png", with the name "bean"
 
+    const menuSong = k.play("menuSong", {loop: true});
+
     // Adds level to scene
-    let level = k.addLevel([
+    let level: GameObj<any> = k.addLevel([
             "=-=+-=a g-----------",
             "-+-=qer gc----------",
             "t-==a   weeeeeet----",
@@ -55,7 +55,8 @@ export default async function gameScene() {
                     k.pos(),
                     k.sprite("TinyBattle_0_0"),
                     //k.area(),
-                    //k.body({ isStatic: true })
+                    //k.body({ isStatic: true }),
+                    "wall"
                 ],
                 "=": () => [
                     k.pos(),
@@ -145,57 +146,8 @@ export default async function gameScene() {
     // Each component gives a game object certain capabilities
 
     // add() assembles a game object from a list of components and add to game, returns the reference of the game object
-    const player = add([
-        sprite("TinyBattle_13_8"), // sprite() component makes it render as a sprite
-        pos(k.center()), // pos() component gives it position, also enables movement
-        rotate(0), // rotate() component gives it rotation
-        anchor("center"), // anchor() component defines the pivot point (defaults to "topleft")
-        player_CMP_movement(1), // custom component for player/boat movement
-        area(),
-        layer("player"),
-        player_CMP_cameraFollow(k.vec2(level.levelWidth(), level.levelHeight()), k.width(), k.height()),
-        "player",
-    ]);
-
-    const tow = add([
-        sprite("TinyBattle_13_5"), // sprite() component makes it render as a sprite
-        pos(k.center()), // pos() component gives it position, also enables movement
-        rotate(0), // rotate() component gives it rotation
-        anchor("center"), // anchor() component defines the pivot point (defaults to "topleft")
-        player_CMP_playerTow4PPL(player), // custom component for player/boat movement
-        area(),
-        layer("tow"),
-        "player",
-        "tow",
-    ]);
-
-    onDraw(() => {
-        if (!(tow as any).isBroken){
-            let tT: any = (tow as any);
-            drawLine({
-                p1: player.pos,
-                p2: tow.pos,
-                width: lerp(4, 1, tT.distance.distance / 65),
-                color: lerp(rgb(0, 255, 0), rgb(255, 0, 0), tT.distance.distance / 65),
-            });
-        };
-    });
-
-    add([
-        sprite("TinyBattle_7_3"), // sprite() component makes it render as a sprite
-        pos(),
-        rotate(0), // rotate() component gives it rotation
-        anchor("center"), // anchor() component defines the pivot point (defaults to "topleft")
-        player_CMP_playerMoveZone(player, 32),
-        layer("player"),
-    ]);
-
-    /*const TitleText = add([
-        text("Maniac Marines", {font: "KennyBold", size: 16, align: "center"}),
-        pos(center().x, 16),
-        anchor("center"),
-        color(65,25,85),
-    ]);*/
+    
+    player(level);
 
     loadSprite("title", "./TITLE.png")
     const TitleText = add([
@@ -213,9 +165,7 @@ export default async function gameScene() {
         layer("ui"),
     ])
 
-    const menuSong = k.play("menuSong", {loop: true});
-
-    k.onKeyPress(["space", "up", "down", "left", "right"], () => {
+    k.onKeyDown(["space", "up", "down", "left", "right"], () => {
         if (tutorText.exists()) {
             destroy(tutorText);
             destroy(TitleText);
@@ -224,6 +174,12 @@ export default async function gameScene() {
             menuSong.stop();
         }
         $tutorEnabled.set(false);
+    });
+
+    onUpdate(() => {
+        if (!tutorText.exists()){
+            menuSong.stop();
+        }
     });
 
     (globalThis as any).player = player;
