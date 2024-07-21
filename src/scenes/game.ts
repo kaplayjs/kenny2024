@@ -395,6 +395,8 @@ k.scene("game", () => {
         }
     }
 
+    spawnObstacles
+
     // when obstacle is hit by either boat
     function hitObstacle(obstacle: any) {
         obstacle.destroy();
@@ -404,6 +406,8 @@ k.scene("game", () => {
         // add sound effects or animation
 
     }
+
+    hitObstacle
 
     // initializing the game
     function playGame() {        
