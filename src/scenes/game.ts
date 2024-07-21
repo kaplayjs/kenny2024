@@ -63,7 +63,7 @@ k.scene("game", () => {
             "w": () => [
                 k.pos(),
                 k.sprite("TinyBattle_1_5"),
-                k.area(),
+                k.area({ shape: new k.Rect(k.vec2(12,0), 4, 4)}),
                 k.body({ isStatic: true })
             ],
             "e": () => [
@@ -75,12 +75,14 @@ k.scene("game", () => {
             "r": () => [
                 k.pos(),
                 k.sprite("TinyBattle_0_5"),
-                k.area(),
+                k.area( { shape: new k.Rect(k.vec2(0,0), 4, 4) }),
                 k.body({ isStatic: true })
             ],
             "t": () => [
                 k.pos(),
                 k.sprite("TinyBattle_2_1"),
+                k.area(),
+                k.body({ isStatic: true })
             ],
             "g": () => [
                 k.pos(),
@@ -103,22 +105,26 @@ k.scene("game", () => {
             "b": () => [
                 k.pos(),
                 k.sprite("TinyBattle_2_3"),
+                k.area(),
+                k.body({ isStatic: true })
             ],
             "z": () => [
                 k.pos(),
                 k.sprite("TinyBattle_2_5"),
-                k.area(),
+                k.area({shape: new k.Rect(k.vec2(12,12), 4, 4)}),
                 k.body({ isStatic: true })
             ],
             "x": () => [
                 k.pos(),
                 k.sprite("TinyBattle_3_5"),
-                k.area(),
+                k.area({shape: new k.Rect(k.vec2(0,12), 4, 4)}),
                 k.body({ isStatic: true })
             ],
             "1": () => [
                 k.pos(),
                 k.sprite("TinyBattle_0_3"),
+                k.area(),
+                k.body({ isStatic: true })
             ],
             "2": () => [
                 k.pos(),
