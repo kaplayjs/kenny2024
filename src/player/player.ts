@@ -5,6 +5,7 @@ import { playerCameraFollow } from "./components/cameraFollow";
 import { playerMovement } from "./components/movement";
 import { playerMoveZone } from "./components/playerMoveZone";
 import { playerTow } from "./components/playerTow4PPL";
+import collide from "./components/collide";
 
 export function player(level: GameObj<any>): { player: GameObj; tow: GameObj } {
     const player = k.add([
@@ -16,9 +17,9 @@ export function player(level: GameObj<any>): { player: GameObj; tow: GameObj } {
             collisionIgnore: ["tow", "player"],
         }),
         k.layer("player"),
-        k.body(),
         playerMovement(1), // custom component for player/boat movement
         playerCameraFollow(k.vec2(level.levelWidth(), level.levelHeight()), k.width(), k.height()),
+        collide(),
         "player",
     ]);
 
@@ -28,13 +29,13 @@ export function player(level: GameObj<any>): { player: GameObj; tow: GameObj } {
         k.rotate(0), // rotate() component gives it rotation
         k.anchor("center"), // anchor() component defines the pivot point (defaults to "topleft")
         playerTow(player), // custom component for player/boat movement
+        collide(),
         k.area(),
         k.layer("tow"),
-        k.body(),
         "player",
         "tow",
     ]);
-
+    
     k.onDraw(() => {
         if (!tow.isBroken) {
             let tT: any = tow as any;

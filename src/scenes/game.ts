@@ -61,6 +61,8 @@ k.scene("game", () => {
             "w": () => [
                 k.pos(),
                 k.sprite("TinyBattle_1_5"),
+                k.area(),
+                k.body({ isStatic: true })
             ],
             "e": () => [
                 k.pos(),
@@ -71,6 +73,8 @@ k.scene("game", () => {
             "r": () => [
                 k.pos(),
                 k.sprite("TinyBattle_0_5"),
+                k.area(),
+                k.body({ isStatic: true })
             ],
             "t": () => [
                 k.pos(),
@@ -99,10 +103,14 @@ k.scene("game", () => {
             "z": () => [
                 k.pos(),
                 k.sprite("TinyBattle_2_5"),
+                k.area(),
+                k.body({ isStatic: true })
             ],
             "x": () => [
                 k.pos(),
                 k.sprite("TinyBattle_3_5"),
+                k.area(),
+                k.body({ isStatic: true })
             ],
             "1": () => [
                 k.pos(),
