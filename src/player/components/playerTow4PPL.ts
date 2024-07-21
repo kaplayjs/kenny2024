@@ -8,6 +8,9 @@ export function playerTow(player: any, hookeConstant: number = 0.1) {
     return {
         isBroken: false,
 
+        // this should use k.onBeforeResolution to check for checking if the collision was left, right, bottom, or top. Then you can set the velocity of the according axis
+        // to the opposite (if you want it to bounce), or do some other math to make it feel less like you are hitting a wall (but keeping momentum).
+
         add(this: GameObj) {
             me = this;
 

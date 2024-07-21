@@ -11,6 +11,7 @@ k.scene("game", () => {
     ]);
 
     const menuSong = k.play("menuSong", { loop: true });
+    const playingSong = k.play("playingSong", { loop: true });
 
     menuSong.loop = true;
 
@@ -48,7 +49,6 @@ k.scene("game", () => {
                 k.pos(),
                 k.sprite("TinyBattle_0_0"),
                 k.area(),
-                //k.body({ isStatic: true })
             ],
             "=": () => [
                 k.pos(),
@@ -65,6 +65,8 @@ k.scene("game", () => {
             "e": () => [
                 k.pos(),
                 k.sprite("TinyBattle_1_1"),
+                k.area({ shape: new k.Rect(k.vec2(0,0), 16, 4)}),
+                k.body({ isStatic: true })
             ],
             "r": () => [
                 k.pos(),
@@ -77,6 +79,8 @@ k.scene("game", () => {
             "g": () => [
                 k.pos(),
                 k.sprite("TinyBattle_2_2"),
+                k.area({ shape: new k.Rect(k.vec2(12,0), 4, 16)}),
+                k.body({ isStatic: true })
             ],
             "q": () => [
                 k.pos(),
@@ -85,6 +89,8 @@ k.scene("game", () => {
             "a": () => [
                 k.pos(),
                 k.sprite("TinyBattle_0_2"),
+                k.area({ shape: new k.Rect(k.vec2(0,0), 4, 16)}),
+                k.body({ isStatic: true })
             ],
             "b": () => [
                 k.pos(),
@@ -105,6 +111,8 @@ k.scene("game", () => {
             "2": () => [
                 k.pos(),
                 k.sprite("TinyBattle_1_3"),
+                k.area({ shape: new k.Rect(k.vec2(0,12), 16, 4)}),
+                k.body({ isStatic: true })
             ],
             "3": () => [
                 k.pos(),
@@ -176,6 +184,14 @@ k.scene("game", () => {
                             k.pos(0, -4),
                             k.sprite("TinyBattle_10_" + Math.floor(Math.random() * 5)),
                             k.z(5),
+                        ])
+                        this.add([
+                            k.pos(8, 8),
+                            k.circle(48),
+                            k.color(55,55,120),
+                            k.z(4),
+                            k.opacity(0.0),
+                            "DeliverRadius",
                         ])
                     }
                 }
@@ -321,6 +337,25 @@ k.scene("game", () => {
     let packageTimeBase = 20
 
     let Cities = level.get("City")
+
+    // helper functions
+
+    // if point is in circle
+    function testCirclePoint(circle: any, point: any) {
+        const dx = point.x - circle.center.x;
+        const dy = point.y - circle.center.y;
+        const distanceSquared = dx * dx + dy * dy;
+        return distanceSquared <= circle.radius * circle.radius;
+    }
+
+    // if point is currently on screen (with a small offset at the top and bottom)
+    function isOnScreen(pos: any) {
+        const screenRect = new k.Rect(k.vec2(0, 16), k.width(), k.height());
+        return !k.testRectPoint(screenRect, pos)
+                && screenRect.sdistToPoint(pos) > 0 * 0;
+    }
+
+    // game functions
     function makePackage() {
         return {
             name: PACKAGE_ADJECTIVES[Math.floor(Math.random() * PACKAGE_ADJECTIVES.length)] + " " + PACKAGE_ITEMS[Math.floor(Math.random() * PACKAGE_ITEMS.length)],
@@ -329,30 +364,55 @@ k.scene("game", () => {
         }
     }
 
+    // when the player attempts to deliver a package
     async function deliverPackage(i: any) {
-        if (!packages[i]) return;
+        if (!packages[i]) return;       // if player is currently selecting a package
+        if (!testCirclePoint(new k.Circle(packages[i].target.pos.add(8,8), 48), plr.player.pos)) return;    // if the player is in range of the city to deliver
         if (packages[i].time <= 0) {
-            // failed to deliver package in time, even though they delivered it. (error)
+            // failed to deliver package in time, even though they delivered it. (should never happen, unless wild error)
         } else {
             score += Math.floor(packages[i].time * 10);
             console.log("Delivered the package: (" + packages[i].name + ", " + packages[i].target + ", " + packages[i].time + ")!");
             packages[i] = null
+            // add sound effect and animations (tween)
+
         }
         await new Promise(resolve => setTimeout(resolve, 10 * 0));   // time to receive new packages? or just could be instant with some delivered feedback
         packages[i] = makePackage();
+        // add sound effect and animations (tween)
+
     }
 
+    // spawns obstacles
+    function spawnObstacles(amount: number) {
+        for (var i = 0; i < amount; i++) {
+            // choose random empty water tile from level, preferably not a tile within 4 tiles of the player
+
+            // choose random obstacle sprite
+
+            // spawn obstacle on tile, maybe with animation.
+
+        }
+    }
+
+    // when obstacle is hit by either boat
+    function hitObstacle(obstacle: any) {
+        obstacle.destroy();
+        score -= 250;
+        if (score < 0) score = 0;
+        
+        // add sound effects or animation
+
+    }
+
+    // initializing the game
     function playGame() {        
         for (var i = 0; i < 3; i++) {
             packages[i] = makePackage()
         }
     }
-    function isOnScreen(pos: any) {
-        const screenRect = new k.Rect(k.vec2(0, 16), k.width(), k.height());
-        return !k.testRectPoint(screenRect, pos)
-                && screenRect.sdistToPoint(pos) > 0 * 0;
-    }
 
+    // game loop
     k.onUpdate(() => {
         for (var i = 0; i < 3; i++) {
             packagesUI[i].scale = k.vec2(1, 1);
@@ -368,7 +428,9 @@ k.scene("game", () => {
             packages[i].time -= k.dt()
             if (packages[i].time <= 0) {
                 // remove package from packages and make new one in 10 seconds... (TODO)
+
                 packages[i] = null
+                packages[i] = makePackage()
                 continue;
             }
         }
@@ -378,15 +440,31 @@ k.scene("game", () => {
         let selectedPackage = packages[selectedPackageIndex]
         if  (selectedPackage) {
             if (isOnScreen(selectedPackage.target.screenPos())) {
+                // points the player in the direction of the city, if offscreen
                 waypointUI.opacity = 1.0;
                 waypointUI.angle = k.vec2(selectedPackage.target.pos.add(8,8)).angle(plr.player.pos);
                 waypointUI.pos = plr.player.pos.add(k.Vec2.fromAngle(waypointUI.angle).scale(k.wave(45, 55, k.time())));
             } else {
+                // points straight down at the city, if on screen
                 waypointUI.angle = 90;
                 waypointUI.pos = selectedPackage.target.pos.add(16, k.wave(-16, -20, k.time() * 2));
             }
         } else {
             waypointUI.opacity = 0.0;
+        }
+        
+        //  Checks for broken tow, and ends the game
+        //
+        //
+        //
+        //  (extra comments so people can find this important code bit)
+        //
+        //
+        //
+        //
+        if (plr.tow.isBroken) {
+            playingSong.stop();
+            k.debug.timeScale = 0
         }
     })
 
@@ -408,7 +486,7 @@ k.scene("game", () => {
         selectedPackageIndex = Number(key) - 1
     })
 
-    k.onKeyPress("f", () => {
+    k.onKeyPress("space", () => {
         deliverPackage(selectedPackageIndex);
     });
 
@@ -423,7 +501,6 @@ k.scene("game", () => {
     k.onKeyDown(["space", "up", "down", "left", "right"], () => {
         if (tutorText.exists()) {
             k.destroy(tutorText);
-            const playingSong = k.play("playingSong", { loop: true });
             playingSong.loop = true;
             playingSong.seek(menuSong.time());
             menuSong.stop();
