@@ -1,4 +1,3 @@
-import { play, Vec2, vec2 } from "kaplay";
 import { k } from "../kaplay";
 import { player } from "../player/player";
 import { $tutorEnabled } from "../stores";
@@ -48,7 +47,7 @@ k.scene("game", () => {
             "-": () => [
                 k.pos(),
                 k.sprite("TinyBattle_0_0"),
-                //k.area(),
+                k.area(),
                 //k.body({ isStatic: true })
             ],
             "=": () => [
@@ -193,7 +192,7 @@ k.scene("game", () => {
 
     let score = 0
     let selectedPackageIndex = 0
-    let packages = []
+    let packages: any[] = []
     let packagesUI = [
         k.add([
             k.pos(k.width() - 48, k.height() - 16),
@@ -204,7 +203,7 @@ k.scene("game", () => {
             k.scale(1),
             {
                 add() {
-                    this.add([
+                    (this as any).add([
                         k.pos(0, 0),
                         k.anchor("center"),
                         k.sprite("TinyBattle_0_6"),
@@ -225,7 +224,7 @@ k.scene("game", () => {
             k.scale(1),
             {
                 add() {
-                    this.add([
+                    (this as any).add([
                         k.pos(0, 0),
                         k.anchor("center"),
                         k.sprite("TinyBattle_0_6"),
@@ -246,7 +245,7 @@ k.scene("game", () => {
             k.scale(1),
             {
                 add() {
-                    this.add([
+                    (this as any).add([
                         k.pos(0, 0),
                         k.anchor("center"),
                         k.sprite("TinyBattle_0_6"),
@@ -330,7 +329,7 @@ k.scene("game", () => {
         }
     }
 
-    async function deliverPackage(i) {
+    async function deliverPackage(i: any) {
         if (!packages[i]) return;
         if (packages[i].time <= 0) {
             // failed to deliver package in time, even though they delivered it. (error)
@@ -348,7 +347,7 @@ k.scene("game", () => {
             packages[i] = makePackage()
         }
     }
-    function isOnScreen(pos) {
+    function isOnScreen(pos: any) {
         const screenRect = new k.Rect(k.vec2(0, 16), k.width(), k.height());
         return !k.testRectPoint(screenRect, pos)
                 && screenRect.sdistToPoint(pos) > 0 * 0;

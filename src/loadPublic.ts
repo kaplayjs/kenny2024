@@ -11,6 +11,8 @@ export default async function loadPublic() {
         16,
     );
 
+    await k.loadSprite("Jam", "./Jam.png");
+
     k.loadSound("menuSong", "./menuMusic/menuSong.wav");
     k.loadSound("playingSong", "./menuMusic/playingSong.wav");
 
