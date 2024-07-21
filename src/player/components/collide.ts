@@ -5,7 +5,7 @@ export default function collide(levelsise: Vec2) {
     return {
         add() {
             me = (this as GameObj)
-            me.onCollide((a: GameObj, b: Collision
+            me.onCollideUpdate((a: GameObj, b: Collision
             ) => {
                 a
                 if (b.hasOverlap()) {
