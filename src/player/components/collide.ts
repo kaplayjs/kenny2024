@@ -1,6 +1,6 @@
-import type { Collision, GameObj } from "kaplay";
+import type { Collision, GameObj, Vec2 } from "kaplay";
 
-export default function collide() {
+export default function collide(levelsise: Vec2) {
     let me: any;
     return {
         add() {
@@ -19,6 +19,15 @@ export default function collide() {
                     me.pos.y += b.displacement.y;
                 }
             })
+        },
+        update () {
+            if (me.pos.x <= 0 || me.pos.x >= levelsise.x) {
+                me.vel.x = -me.vel.x;
+            }
+
+            if (me.pos.y <= 0 || me.pos.y >= levelsise.y) {
+                me.vel.y = -me.vel.y;
+            }
         }
     }
 }

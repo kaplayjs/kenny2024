@@ -19,7 +19,7 @@ export function player(level: GameObj<any>): { player: GameObj; tow: GameObj } {
         k.layer("player"),
         playerMovement(1), // custom component for player/boat movement
         playerCameraFollow(k.vec2(level.levelWidth(), level.levelHeight()), k.width(), k.height()),
-        collide(),
+        collide(k.vec2(level.levelWidth(), level.levelHeight())),
         "player",
     ]);
 
@@ -29,7 +29,7 @@ export function player(level: GameObj<any>): { player: GameObj; tow: GameObj } {
         k.rotate(0), // rotate() component gives it rotation
         k.anchor("center"), // anchor() component defines the pivot point (defaults to "topleft")
         playerTow(player), // custom component for player/boat movement
-        collide(),
+        collide(k.vec2(level.levelWidth(), level.levelHeight())),
         k.area(),
         k.layer("tow"),
         "player",
@@ -37,7 +37,7 @@ export function player(level: GameObj<any>): { player: GameObj; tow: GameObj } {
     ]);
     
     k.onDraw(() => {
-        if (!tow.isBroken) {
+        if (!(tow as any).isBroken) {
             let tT: any = tow as any;
 
             k.drawLine({
