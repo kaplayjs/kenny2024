@@ -530,6 +530,7 @@ k.scene("game", () => {
             playingSong.seek(menuSong.time());
             menuSong.stop();
             playingSong.paused = false;
+            k.play("BoatEngineStart");
             playGame();
         }
         $tutorEnabled.set(false);

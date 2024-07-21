@@ -26,12 +26,12 @@ export default function collide(levelsise: Vec2) {
         update () {
             if (me.pos.x <= 0 || me.pos.x >= levelsise.x) {
                 k.play("BoatHit");
-                me.vel.x = -me.vel.x * 2;
+                me.vel.x = -me.vel.x;
             }
 
             if (me.pos.y <= 0 || me.pos.y >= levelsise.y) {
                 k.play("BoatHit");
-                me.vel.y = -me.vel.y * 2;
+                me.vel.y = -me.vel.y;
             }
         }
     }
