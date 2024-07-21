@@ -233,8 +233,9 @@ k.scene("game", () => {
         k.add([
             k.pos(k.width() - 48, k.height() - 16),
             k.anchor("center"),
-            k.rect(12,12),
+            k.sprite("TinyBattle_7_4"),
             k.color(255,255,255),
+            k.opacity(0.0),
             k.fixed(),
             k.scale(1),
             {
@@ -254,8 +255,9 @@ k.scene("game", () => {
         k.add([
             k.pos(k.width() - 32, k.height() - 16),
             k.anchor("center"),
-            k.rect(12,12),
+            k.sprite("TinyBattle_7_4"),
             k.color(255,255,255),
+            k.opacity(0.0),
             k.fixed(),
             k.scale(1),
             {
@@ -275,8 +277,9 @@ k.scene("game", () => {
         k.add([
             k.pos(k.width() - 16, k.height() - 16),
             k.anchor("center"),
-            k.rect(12,12),
+            k.sprite("TinyBattle_7_4"),
             k.color(255,255,255),
+            k.opacity(0.0),
             k.fixed(),
             k.scale(1),
             {
@@ -432,6 +435,7 @@ k.scene("game", () => {
     // initializing the game
     function playGame() {        
         for (var i = 0; i < 3; i++) {
+            (packagesUI[i] as any).opacity = 1.0;
             packages[i] = makePackage()
         }
     }
