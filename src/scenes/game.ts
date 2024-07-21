@@ -13,6 +13,8 @@ k.scene("game", () => {
     const menuSong = k.play("menuSong", { loop: true });
     const playingSong = k.play("playingSong", { loop: true });
 
+    playingSong.paused = true;
+
     menuSong.loop = true;
 
     // Adds level to scene
@@ -89,6 +91,8 @@ k.scene("game", () => {
             "q": () => [
                 k.pos(),
                 k.sprite("TinyBattle_0_1"),
+                k.area(),
+                k.body({ isStatic: true })
             ],
             "a": () => [
                 k.pos(),
@@ -125,6 +129,8 @@ k.scene("game", () => {
             "3": () => [
                 k.pos(),
                 k.sprite("TinyBattle_2_3"),
+                k.area(),
+                k.body({ isStatic: true })
             ],
             "o": () => [
                 k.pos(),
@@ -522,6 +528,7 @@ k.scene("game", () => {
             playingSong.loop = true;
             playingSong.seek(menuSong.time());
             menuSong.stop();
+            playingSong.paused = false;
             playGame();
         }
         $tutorEnabled.set(false);
