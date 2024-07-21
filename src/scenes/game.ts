@@ -334,11 +334,11 @@ k.scene("game", () => {
         if (packages[i].time <= 0) {
             // failed to deliver package in time, even though they delivered it. (error)
         } else {
-            score += packages[i].time * 10;
+            score += Math.floor(packages[i].time * 10);
             console.log("Delivered the package: (" + packages[i].name + ", " + packages[i].target + ", " + packages[i].time + ")!");
             packages[i] = null
         }
-        await new Promise(resolve => setTimeout(resolve, 10 * 1000));   // time to receive new packages? or just could be instant with some delivered feedback
+        await new Promise(resolve => setTimeout(resolve, 10 * 0));   // time to receive new packages? or just could be instant with some delivered feedback
         packages[i] = makePackage();
     }
 
@@ -387,6 +387,20 @@ k.scene("game", () => {
             }
         } else {
             waypointUI.opacity = 0.0;
+        }
+    })
+
+    // Draw Score
+    k.onDraw(() => {
+        let scoreString = String(score)
+        for (var i = 0; i < scoreString.length; i++) {
+            let num = scoreString.charAt(i);
+            k.drawSprite({
+                sprite: "TinyBattle_" + num + "_10",
+                pos: k.vec2(i*12, 8),
+                anchor: "left",
+                fixed: true
+            })
         }
     })
 
