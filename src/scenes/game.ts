@@ -412,8 +412,10 @@ k.scene("game", () => {
         }
     }
 
+    let deadCheck = false;
+
     // game loop
-    k.onUpdate(() => {
+    k.onUpdate(async () => {
         for (var i = 0; i < 3; i++) {
             packagesUI[i].scale = k.vec2(1, 1);
 
@@ -464,7 +466,11 @@ k.scene("game", () => {
         //
         if (plr.tow.isBroken) {
             playingSong.stop();
-            k.debug.timeScale = 0
+            if (deadCheck == false) {
+                deadCheck = true;
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                k.go("game");
+            }
         }
     })
 
