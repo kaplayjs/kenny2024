@@ -1,4 +1,5 @@
 import type { Collision, GameObj, Vec2 } from "kaplay";
+import { k } from "../../kaplay";
 
 export default function collide(levelsise: Vec2) {
     let me: any;
@@ -9,24 +10,28 @@ export default function collide(levelsise: Vec2) {
             ) => {
                 a
                 if (b.hasOverlap()) {
+                    k.play("BoatHit");
                     if (Math.abs(b.displacement.x) > 0) {
                         me.vel.x = -me.vel.x; 
                     }
                     if (Math.abs(b.displacement.y) > 0) {
                         me.vel.y = -me.vel.y;  
                     }
-                    me.pos.x += b.displacement.x;
-                    me.pos.y += b.displacement.y;
+
+                    me.pos.x += b.displacement.x * 2;
+                    me.pos.y += b.displacement.y * 2;
                 }
             })
         },
         update () {
             if (me.pos.x <= 0 || me.pos.x >= levelsise.x) {
-                me.vel.x = -me.vel.x;
+                k.play("BoatHit");
+                me.vel.x = -me.vel.x * 2;
             }
 
             if (me.pos.y <= 0 || me.pos.y >= levelsise.y) {
-                me.vel.y = -me.vel.y;
+                k.play("BoatHit");
+                me.vel.y = -me.vel.y * 2;
             }
         }
     }

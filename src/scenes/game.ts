@@ -485,6 +485,7 @@ k.scene("game", () => {
         if (plr.tow.isBroken) {
             playingSong.stop();
             if (deadCheck == false) {
+                k.play("RopePulled");
                 deadCheck = true;
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 k.go("game");
