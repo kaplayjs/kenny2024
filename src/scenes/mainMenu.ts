@@ -15,7 +15,7 @@ k.scene("mainMenu", () => {
         k.scale(1),
     ]);
 
-    k.onUpdate(() => {
+    k.onFixedUpdate(() => {
         // const scaleInterpolation = k.wave(1, 1.2, k.time() * 10);
         // logo.scale = k.vec2(scaleInterpolation);
 

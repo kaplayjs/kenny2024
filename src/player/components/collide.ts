@@ -1,4 +1,4 @@
-import type { Collision, GameObj, Vec2 } from "kaplay";
+import type { Collision, GameObj, Vec2 } from "kaplay-beta";
 import { k } from "../../kaplay";
 
 export default function collide(levelsise: Vec2) {
@@ -23,7 +23,7 @@ export default function collide(levelsise: Vec2) {
                 }
             })
         },
-        update () {
+        fixedUpdate () {
             if (me.pos.x <= 0 || me.pos.x >= levelsise.x) {
                 k.play("BoatHit");
                 me.vel.x = -me.vel.x;

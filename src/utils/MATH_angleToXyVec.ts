@@ -1,4 +1,4 @@
-import { Vec2 } from "kaplay";
+import { Vec2 } from "kaplay-beta";
 import { k } from "../kaplay";
 
 export default function utils_MATH_angleToXyVec(angle: number): Vec2 {

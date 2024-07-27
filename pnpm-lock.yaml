@@ -20,9 +20,9 @@ importers:
       '@tauri-apps/plugin-shell':
         specifier: '>=2.0.0-beta.0'
         version: 2.0.0-beta.8
-      kaplay:
-        specifier: 3001.0.0-alpha.18.1
-        version: 3001.0.0-alpha.18.1
+      kaplay-beta:
+        specifier: 3001.0.0-alpha.20-b1
+        version: 3001.0.0-alpha.20-b1
       nanostores:
         specifier: ^0.10.3
         version: 0.10.3
@@ -513,8 +513,8 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  kaplay@3001.0.0-alpha.18.1:
-    resolution: {integrity: sha512-UyRI4jGbugWpz+qBmxhekPt0KDny44zrsb0pcKdbKl0m8ouplhYlZePNOZaiyrAreH27ayFFQVOZ6KyRwSUATQ==}
+  kaplay-beta@3001.0.0-alpha.20-b1:
+    resolution: {integrity: sha512-CVzS6pz53/Z5tUbxtoLTvU748qtp0QQw2+6z4sXBGiNsXp58Y2aAMMj2Tde0R7wOdwu1jE2DUxMOWGwVL/3AUg==}
 
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
@@ -966,7 +966,7 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  kaplay@3001.0.0-alpha.18.1: {}
+  kaplay-beta@3001.0.0-alpha.20-b1: {}
 
   loose-envify@1.4.0:
     dependencies:

@@ -1,4 +1,4 @@
-import type { GameObj } from "kaplay";
+import type { GameObj } from "kaplay-beta";
 import { k } from "../kaplay";
 
 import { playerCameraFollow } from "./components/cameraFollow";

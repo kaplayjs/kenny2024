@@ -1,4 +1,4 @@
-import kaplay from "kaplay";
+import kaplay from "kaplay-beta";
 
 export const k = kaplay({
     background: [0, 0, 0],

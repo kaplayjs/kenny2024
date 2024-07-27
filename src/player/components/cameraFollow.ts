@@ -1,4 +1,4 @@
-import type { GameObj, PosComp, Vec2 } from "kaplay";
+import type { GameObj, PosComp, Vec2 } from "kaplay-beta";
 import { k } from "../../kaplay";
 
 function clamp(value: number, min: number, max: number): number {
@@ -12,7 +12,7 @@ export function playerCameraFollow(vec?: Vec2, viewWidth?: number, viewHeight?: 
         add(this: GameObj<PosComp>) {
             me = this;
         },
-        update() {
+        fixedUpdate() {
             if (vec && viewWidth !== undefined && viewHeight !== undefined) {
                 const halfViewWidth = viewWidth / 2;
                 const halfViewHeight = viewHeight / 2;

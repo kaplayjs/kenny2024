@@ -1,4 +1,4 @@
-import { Vec2 } from "kaplay";
+import { Vec2 } from "kaplay-beta";
 
 export interface AngleDistanceResult {
     angleDeg: number;

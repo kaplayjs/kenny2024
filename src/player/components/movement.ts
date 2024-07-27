@@ -1,4 +1,4 @@
-import type { GameObj } from "kaplay";
+import type { GameObj } from "kaplay-beta";
 import { k } from "../../kaplay";
 
 import utils_MATH_angleToXyVec from "../../utils/MATH_angleToXyVec";
@@ -12,7 +12,7 @@ export function playerMovement(speed = 1) {
             me.vel = k.vec2(0, 0);
             me.ang = 0;
         },
-        update() {
+        fixedUpdate() {
             me.ang = me.ang % 360;
 
             if (me.ang < 0) {
@@ -28,23 +28,23 @@ export function playerMovement(speed = 1) {
             }
 
             if (k.isKeyDown("left")) {
-                me.ang -= 240 * k.dt();
+                me.ang -= 240/60;
             }
             if (k.isKeyDown("right")) {
-                me.ang += 240 * k.dt();
+                me.ang += 240/60;
             }
 
             if (k.isKeyDown("up")) {
                 me.vel = k.vec2(
-                    me.vel.x + (utils_MATH_angleToXyVec(me.ang).x * speed * k.dt()),
-                    me.vel.y + (utils_MATH_angleToXyVec(me.ang).y * speed * k.dt()),
+                    me.vel.x + (utils_MATH_angleToXyVec(me.ang).x * speed) / 60,
+                    me.vel.y + (utils_MATH_angleToXyVec(me.ang).y * speed) / 60,
                 );
             }
 
             if (k.isKeyDown("down")) {
                 me.vel = k.vec2(
-                    me.vel.x - (utils_MATH_angleToXyVec(me.ang).x * speed * k.dt()),
-                    me.vel.y - (utils_MATH_angleToXyVec(me.ang).y * speed * k.dt()),
+                    me.vel.x - (utils_MATH_angleToXyVec(me.ang).x * speed) / 60,
+                    me.vel.y - (utils_MATH_angleToXyVec(me.ang).y * speed) / 60,
                 );
             }
 
@@ -52,8 +52,8 @@ export function playerMovement(speed = 1) {
                 me.vel = k.vec2(0, 0);
             }
 
-            me.pos.x += me.vel.x * 120 * k.dt();
-            me.pos.y += me.vel.y * 120 * k.dt();
+            me.pos.x += me.vel.x;
+            me.pos.y += me.vel.y;
 
             me.vel.x = Math.max(-speed, Math.min(speed, me.vel.x));
             me.vel.y = Math.max(-speed, Math.min(speed, me.vel.y));
